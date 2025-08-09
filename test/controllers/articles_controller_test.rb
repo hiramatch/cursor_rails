@@ -45,4 +45,18 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to articles_url
   end
+
+  test "create returns 422 and body errors when published without body (JSON)" do
+    assert_no_difference("Article.count") do
+      post articles_url,
+        params: { article: { title: "T", body: nil, published: true } },
+        as: :json
+    end
+
+    assert_response :unprocessable_entity
+
+    json = JSON.parse(@response.body)
+    assert json.key?("body"), "expected errors for body in JSON response"
+    assert_includes json["body"], "can't be blank"
+  end
 end

@@ -23,8 +23,10 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params)
 
+    saved_successfully = @article.save
+
     respond_to do |format|
-      if @article.save
+      if saved_successfully
         format.html { redirect_to @article, notice: "Article was successfully created." }
         format.json { render :show, status: :created, location: @article }
       else
@@ -36,8 +38,10 @@ class ArticlesController < ApplicationController
 
   # PATCH/PUT /articles/1 or /articles/1.json
   def update
+    updated_successfully = @article.update(article_params)
+
     respond_to do |format|
-      if @article.update(article_params)
+      if updated_successfully
         format.html { redirect_to @article, notice: "Article was successfully updated.", status: :see_other }
         format.json { render :show, status: :ok, location: @article }
       else
