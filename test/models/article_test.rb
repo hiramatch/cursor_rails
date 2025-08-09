@@ -26,4 +26,13 @@ class ArticleTest < ActiveSupport::TestCase
     article_ok = Article.new(title: "T", body: "", published: false)
     assert article_ok.valid?
   end
+
+  test "published scope returns only published articles" do
+    published = Article.create!(title: "TP", body: "B", published: true)
+    draft     = Article.create!(title: "TD", body: "B", published: false)
+
+    ids = Article.published.pluck(:id)
+    assert_includes ids, published.id
+    refute_includes ids, draft.id
+  end
 end

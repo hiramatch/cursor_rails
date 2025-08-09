@@ -4,4 +4,7 @@ class Article < ApplicationRecord
 
   # 公開時は本文必須（タイトルは常時必須のためここでは本文のみを条件付きで検証）
   validates :body, presence: true, if: :published?
+
+  # 公開済みの記事を抽出するスコープ
+  scope :published, -> { where(published: true) }
 end
