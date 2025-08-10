@@ -1,4 +1,5 @@
 ja:
+  hello: "こんにちは世界"
   activerecord:
     models:
       article: 記事
@@ -29,12 +30,22 @@ ja:
       page_title: "記事一覧"
       show_article: "この記事を表示"
       new_article: "新しい記事"
+    new:
+      page_title: "新しい記事"
+    edit:
+      page_title: "記事を編集"
+    show:
+      edit_article: "この記事を編集"
+      back_to_articles: "記事一覧に戻る"
+      destroy_article: "この記事を削除"
+      confirm_destroy: "本当に削除しますか？"
     _article:
       title: "タイトル"
       body: "本文"
       published: "公開状態"
     _form:
       errors_prohibited: "%{count}件のエラーにより、この記事を保存できませんでした"
+      cancel: "キャンセル"
     common:
       yes: "はい"
       no: "いいえ"
