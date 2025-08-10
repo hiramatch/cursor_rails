@@ -18,3 +18,4 @@
 /config/credentials/*.key
 /.github
 /.devcontainer
+/coverage/
