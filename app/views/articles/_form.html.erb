@@ -1,8 +1,7 @@
-<%= form_with(model: article) do |form| %>
+<%= form_with(model: article, class: "article-form") do |form| %>
   <% if article.errors.any? %>
-    <div style="color: red">
+    <div class="error-messages">
       <h2><%= t('.errors_prohibited', count: article.errors.count) %></h2>
-
       <ul>
         <% article.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -11,22 +10,25 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+  <div class="form-group">
+    <%= form.label :title, class: "form-label" %>
+    <%= form.text_field :title, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :body %>
-    <%= form.text_area :body %>
+  <div class="form-group">
+    <%= form.label :body, class: "form-label" %>
+    <%= form.text_area :body, rows: 8, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :published %>
-    <%= form.check_box :published %>
+  <div class="form-group">
+    <div class="checkbox-wrapper">
+      <%= form.check_box :published, class: "form-checkbox" %>
+      <%= form.label :published, class: "form-label inline" %>
+    </div>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="form-actions">
+    <%= form.submit class: "btn btn-primary" %>
+    <%= link_to t('.cancel'), articles_path, class: "btn btn-secondary" %>
   </div>
 <% end %>

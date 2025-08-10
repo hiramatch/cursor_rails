@@ -1,16 +1,40 @@
-<p style="color: green"><%= notice %></p>
+<% if notice %>
+  <div class="notice"><%= notice %></div>
+<% end %>
 
 <% content_for :title, t('.page_title') %>
 
-<h1><%= t('.page_title') %></h1>
+<div class="articles-container">
+  <div class="articles-header">
+    <h1><%= t('.page_title') %></h1>
+  </div>
 
-<div id="articles">
-  <% @articles.each do |article| %>
-    <%= render article %>
-    <p>
-      <%= link_to t('.show_article'), article %>
-    </p>
-  <% end %>
+  <div class="articles-grid">
+    <% @articles.each do |article| %>
+      <div class="article-card">
+        <div class="article-title">
+          <%= article.title %>
+        </div>
+        
+        <div class="article-body">
+          <%= truncate(article.body, length: 150) %>
+        </div>
+        
+        <div class="article-meta">
+          <span class="article-status <%= article.published? ? 'published' : 'draft' %>">
+            <%= article.published? ? t('common.yes') : t('common.no') %>
+          </span>
+          <small><%= article.created_at.strftime("%Y年%m月%d日") %></small>
+        </div>
+        
+        <div class="article-actions">
+          <%= link_to t('.show_article'), article, class: "btn btn-primary btn-small" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div style="text-align: center;">
+    <%= link_to t('.new_article'), new_article_path, class: "new-article-btn" %>
+  </div>
 </div>
-
-<%= link_to t('.new_article'), new_article_path %>
