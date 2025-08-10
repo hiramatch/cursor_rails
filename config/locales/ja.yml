@@ -16,6 +16,14 @@ ja:
             body:
               blank: "本文を入力してください"
               too_long: "本文は%{count}文字以内で入力してください"
+  articles:
+    create:
+      success: "記事が正常に作成されました"
+    update:
+      success: "記事が正常に更新されました"
+    destroy:
+      success: "記事が正常に削除されました"
+      error: "記事の削除に失敗しました"
   errors:
     format: "%{message}"
     messages:
