@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  # ルートパスを記事一覧に設定
+  root "articles#index"
+  
   resources :articles
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

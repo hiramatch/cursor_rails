@@ -59,4 +59,27 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
     assert json.key?("body"), "expected errors for body in JSON response"
     assert json["body"].any?, "body errors should not be empty"
   end
+
+  test "internationalized success messages" do
+    # 作成成功時のメッセージ
+    post articles_url, params: { article: { title: "テスト記事", body: "テスト本文", published: false } }
+    follow_redirect!
+    assert_response :success
+    
+    # 更新成功時のメッセージ
+    patch article_url(Article.last), params: { article: { title: "更新された記事", body: "更新された本文", published: true } }
+    follow_redirect!
+    assert_response :success
+    
+    # 削除成功時のメッセージ
+    delete article_url(Article.last)
+    follow_redirect!
+    assert_response :success
+  end
+
+  test "root path redirects to articles index" do
+    get root_url
+    assert_response :success
+    assert_select "h1", "記事一覧"
+  end
 end

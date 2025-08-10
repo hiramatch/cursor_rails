@@ -7,39 +7,67 @@ class ArticlesTest < ApplicationSystemTestCase
 
   test "visiting the index" do
     visit articles_url
-    assert_selector "h1", text: "Articles"
+    assert_selector "h1", text: "記事一覧"
+    assert_selector "a", text: "新しい記事"
   end
 
-  test "should create article" do
+  test "creating an Article" do
     visit articles_url
-    click_on "New article"
+    click_on "新しい記事"
 
-    fill_in "Body", with: @article.body
-    check "Published" if @article.published
-    fill_in "Title", with: @article.title
+    fill_in "タイトル", with: "テスト記事"
+    fill_in "本文", with: "テスト本文"
+    check "公開状態"
     click_on "Create Article"
 
-    assert_text "Article was successfully created"
-    click_on "Back"
+    assert_text "記事が正常に作成されました"
+    assert_text "テスト記事"
+    assert_text "テスト本文"
+    assert_text "はい"
   end
 
-  test "should update Article" do
-    visit article_url(@article)
-    click_on "Edit this article", match: :first
+  test "updating an Article" do
+    visit articles_url
+    click_on "この記事を表示", match: :first
+    click_on "Edit this article"
 
-    fill_in "Body", with: @article.body
-    check "Published" if @article.published
-    fill_in "Title", with: @article.title
+    fill_in "タイトル", with: "更新された記事"
+    fill_in "本文", with: "更新された本文"
+    uncheck "公開状態"
     click_on "Update Article"
 
-    assert_text "Article was successfully updated"
-    click_on "Back"
+    assert_text "記事が正常に更新されました"
+    assert_text "更新された記事"
+    assert_text "更新された本文"
+    assert_text "いいえ"
   end
 
-  test "should destroy Article" do
-    visit article_url(@article)
-    click_on "Destroy this article", match: :first
+  test "destroying an Article" do
+    visit articles_url
+    page.accept_confirm do
+      click_on "Destroy", match: :first
+    end
 
-    assert_text "Article was successfully destroyed"
+    assert_text "記事が正常に削除されました"
+  end
+
+  test "displaying article with Japanese labels" do
+    visit article_url(@article)
+    
+    assert_text "タイトル:"
+    assert_text "本文:"
+    assert_text "公開状態:"
+    assert_text @article.title
+    assert_text @article.body
+  end
+
+  test "form validation errors in Japanese" do
+    visit new_article_url
+    
+    # タイトルを空にして送信
+    fill_in "本文", with: "テスト本文"
+    click_on "Create Article"
+    
+    assert_text "タイトルを入力してください"
   end
 end

@@ -1,17 +1,17 @@
 <div id="<%= dom_id article %>">
   <p>
-    <strong>Title:</strong>
+    <strong><%= t('.title') %>:</strong>
     <%= article.title %>
   </p>
 
   <p>
-    <strong>Body:</strong>
+    <strong><%= t('.body') %>:</strong>
     <%= article.body %>
   </p>
 
   <p>
-    <strong>Published:</strong>
-    <%= article.published %>
+    <strong><%= t('.published') %>:</strong>
+    <%= article.published? ? t('.yes') : t('.no') %>
   </p>
 
 </div>

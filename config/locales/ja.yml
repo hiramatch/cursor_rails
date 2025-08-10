@@ -6,6 +6,7 @@ ja:
       article:
         title: タイトル
         body: 本文
+        published: 公開状態
     errors:
       models:
         article:
@@ -16,6 +17,27 @@ ja:
             body:
               blank: "本文を入力してください"
               too_long: "本文は%{count}文字以内で入力してください"
+  articles:
+    create:
+      success: "記事が正常に作成されました"
+    update:
+      success: "記事が正常に更新されました"
+    destroy:
+      success: "記事が正常に削除されました"
+      error: "記事の削除に失敗しました"
+    index:
+      page_title: "記事一覧"
+      show_article: "この記事を表示"
+      new_article: "新しい記事"
+    _article:
+      title: "タイトル"
+      body: "本文"
+      published: "公開状態"
+    _form:
+      errors_prohibited: "%{count}件のエラーにより、この記事を保存できませんでした"
+    common:
+      yes: "はい"
+      no: "いいえ"
   errors:
     format: "%{message}"
     messages:
