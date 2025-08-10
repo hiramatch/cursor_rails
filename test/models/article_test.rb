@@ -9,19 +9,19 @@ class ArticleTest < ActiveSupport::TestCase
   test "published requires body" do
     article = Article.new(title: "T", body: nil, published: true)
     assert_not article.valid?
-    assert_includes article.errors[:body], "can't be blank"
+    assert article.errors.of_kind?(:body, :blank)
   end
 
   test "title max length 100" do
     article = Article.new(title: "a" * 101, body: "b", published: false)
     assert_not article.valid?
-    assert_includes article.errors[:title], "is too long (maximum is 100 characters)"
+    assert article.errors.of_kind?(:title, :too_long)
   end
 
   test "body max length 10000 with allowance for blank" do
     article = Article.new(title: "T", body: "a" * 10001, published: false)
     assert_not article.valid?
-    assert_includes article.errors[:body], "is too long (maximum is 10000 characters)"
+    assert article.errors.of_kind?(:body, :too_long)
 
     article_ok = Article.new(title: "T", body: "", published: false)
     assert article_ok.valid?
