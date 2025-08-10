@@ -1,0 +1,23 @@
+ja:
+  activerecord:
+    models:
+      article: 記事
+    attributes:
+      article:
+        title: タイトル
+        body: 本文
+    errors:
+      models:
+        article:
+          attributes:
+            title:
+              blank: "タイトルを入力してください"
+              too_long: "タイトルは%{count}文字以内で入力してください"
+            body:
+              blank: "本文を入力してください"
+              too_long: "本文は%{count}文字以内で入力してください"
+  errors:
+    format: "%{message}"
+    messages:
+      blank: "入力してください"
+      too_long: "%{count}文字以内で入力してください"

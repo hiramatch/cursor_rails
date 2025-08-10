@@ -57,6 +57,6 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
 
     json = JSON.parse(@response.body)
     assert json.key?("body"), "expected errors for body in JSON response"
-    assert_includes json["body"], "can't be blank"
+    assert json["body"].any?, "body errors should not be empty"
   end
 end

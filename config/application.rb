@@ -23,5 +23,9 @@ module App
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # i18n: 既定ロケールを日本語に
+    config.i18n.default_locale = :ja
+    config.i18n.available_locales = %i[ja en]
   end
 end
