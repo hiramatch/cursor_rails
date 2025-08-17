@@ -22,7 +22,7 @@
         
         <div class="article-meta">
           <span class="article-status <%= article.published? ? 'published' : 'draft' %>">
-            <%= article.published? ? t('common.yes') : t('common.no') %>
+            <%= article.published? ? t('articles.common.yes') : t('articles.common.no') %>
           </span>
           <small><%= article.created_at.strftime("%Y年%m月%d日") %></small>
         </div>

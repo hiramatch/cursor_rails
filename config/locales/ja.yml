@@ -46,6 +46,7 @@ ja:
     _form:
       errors_prohibited: "%{count}件のエラーにより、この記事を保存できませんでした"
       cancel: "キャンセル"
+      submit: "保存"
     common:
       yes: "はい"
       no: "いいえ"
