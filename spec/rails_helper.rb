@@ -23,13 +23,17 @@ require 'rspec/rails'
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 #
-# Rails.root.glob('spec/support/**/*.rb').sort_by(&:to_s).each { |f| require f }
+Rails.root.glob('spec/support/**/*.rb').sort_by(&:to_s).each { |f| require f }
 
 # FactoryBot
 require 'factory_bot_rails'
 
 # Capybara
 require 'capybara/rspec'
+
+# Set default locale for tests
+I18n.default_locale = :ja
+I18n.available_locales = [:ja, :en]
 
 # SimpleCov for test coverage
 require 'simplecov'

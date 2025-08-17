@@ -38,12 +38,21 @@ Rails.application.configure do
 
   # Set host to be used by links generated in mailer templates.
   config.action_mailer.default_url_options = { host: "example.com" }
+  
+  # Allow requests to example.com in test environment
+  config.hosts << "example.com"
+  config.hosts << "www.example.com"
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
 
   # Raises error for missing translations.
-  # config.i18n.raise_on_missing_translations = true
+  config.i18n.raise_on_missing_translations = false
+  
+  # Set default locale for tests
+  config.i18n.default_locale = :ja
+  config.i18n.available_locales = [:ja, :en]
+  config.i18n.fallbacks = true
 
   # Annotate rendered view with file names.
   # config.action_view.annotate_rendered_view_with_filenames = true

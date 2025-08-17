@@ -1,7 +1,7 @@
 <%= form_with(model: article, class: "article-form") do |form| %>
   <% if article.errors.any? %>
     <div class="error-messages">
-      <h2><%= t('.errors_prohibited', count: article.errors.count) %></h2>
+      <h2><%= t('articles._form.errors_prohibited', count: article.errors.count) %></h2>
       <ul>
         <% article.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -11,24 +11,24 @@
   <% end %>
 
   <div class="form-group">
-    <%= form.label :title, class: "form-label" %>
+    <%= form.label :title, t('activerecord.attributes.article.title'), class: "form-label" %>
     <%= form.text_field :title, class: "form-control" %>
   </div>
 
   <div class="form-group">
-    <%= form.label :body, class: "form-label" %>
+    <%= form.label :body, t('activerecord.attributes.article.body'), class: "form-label" %>
     <%= form.text_area :body, rows: 8, class: "form-control" %>
   </div>
 
   <div class="form-group">
     <div class="checkbox-wrapper">
       <%= form.check_box :published, class: "form-checkbox" %>
-      <%= form.label :published, class: "form-label inline" %>
+      <%= form.label :published, t('activerecord.attributes.article.published'), class: "form-label inline" %>
     </div>
   </div>
 
   <div class="form-actions">
-    <%= form.submit class: "btn btn-primary" %>
-    <%= link_to t('.cancel'), articles_path, class: "btn btn-secondary" %>
+    <%= form.submit t('articles._form.submit'), class: "btn btn-primary" %>
+    <%= link_to t('articles._form.cancel'), articles_path, class: "btn btn-secondary" %>
   </div>
 <% end %>
